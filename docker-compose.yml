@@ -1,0 +1,19 @@
+version: '3'
+services:
+  server:
+    image: quochuydev/node-blog:v4
+    depends_on:
+      - db
+    volumes:
+      - ../data/logs:/code/logs
+      - ../data/blog/static:/code/public/static
+    command: npm run start:prod --MONGODB_HOSTNAME=db
+    environment:
+      - MONGODB_URL=mongodb://db:27017/blog
+    ports:
+      - 8080:8080
+  db:
+    image: mongo:4.2
+    volumes:
+      - ../data/mongo-backup:/data/mongo-backup
+      - ../data/mongo-db:/data/db
