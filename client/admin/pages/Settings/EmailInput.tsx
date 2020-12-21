@@ -25,7 +25,7 @@ export default (props: Props) => {
     const [form] = useForm();
     const onFinish = (values) => {
         injectRequestLoading(updateEmailConfig(values)).then(() => {
-            message.success('更新成功');
+            message.success('updateEmailConfig');
         });
     };
     useEffect(() => {
@@ -47,41 +47,36 @@ export default (props: Props) => {
                     </Button>
                 )}
             </Tip>
-            <Form.Item label="邮箱smtp地址" name="smtpHost">
+            <Form.Item label="smtpHost" name="smtpHost">
                 <Input size="large" placeholder="请输入邮箱smtp地址" disabled={disabled} />
             </Form.Item>
-            <Form.Item label="邮箱地址" name="smtpAuthUser">
+            <Form.Item label="smtpAuthUser" name="smtpAuthUser">
                 <Input size="large" placeholder="请输入邮箱地址" disabled={disabled} />
             </Form.Item>
-            <Form.Item label="邮箱授权密码" name="smtpAuthpass">
-                <Input.Password size="large" placeholder="请输入邮箱授权密码" disabled={disabled} />
+            <Form.Item label="smtpAuthpass" name="smtpAuthpass">
+                <Input.Password size="large" placeholder="Password" disabled={disabled} />
             </Form.Item>
-            <Form.Item
-                name="isEnableSmtp"
-                valuePropName="checked"
-                label="是否开启邮箱通知服务"
-                extra="勾选，系统将会有新的时，给你发送通知邮件"
-            >
+            <Form.Item name="isEnableSmtp" valuePropName="checked" label="isEnableSmtp" extra="isEnableSmtp">
                 <Switch checkedChildren={<CheckOutlined />} unCheckedChildren={<CloseOutlined />} disabled={disabled} />
             </Form.Item>
             {!disabled && (
                 <Form.Item>
                     <Button type="primary" htmlType="submit" loading={loading} style={{ marginRight: '10px' }}>
-                        <SendOutlined></SendOutlined>保存邮箱配置
+                        <SendOutlined></SendOutlined>submit
                     </Button>
                     <Button
                         loading={loading}
                         onClick={() => {
                             injectRequestLoading(testEmail()).then((res) => {
                                 if (res && res.data === true) {
-                                    return message.success('邮箱配置正常！');
+                                    return message.success('injectRequestLoading');
                                 }
-                                message.error('邮箱配置错误！');
+                                message.error('injectRequestLoading');
                             });
                         }}
                     >
                         <SoundOutlined />
-                        测试发送邮件
+                        Button
                     </Button>
                 </Form.Item>
             )}

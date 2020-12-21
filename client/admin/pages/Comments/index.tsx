@@ -129,7 +129,7 @@ export default () => {
                             icon={<EditFilled />}
                             onClick={() => Router.push('/admin/content/comments/reply/' + record._id)}
                         >
-                            回复
+                            EditFilled
                         </Button>
                         ,
                         <Popconfirm
@@ -223,7 +223,7 @@ export default () => {
                                                                     );
                                                                 }}
                                                             >
-                                                                回复
+                                                                comments/reply/id
                                                             </Button>
                                                         </UserAction>
                                                     </ReplyInfo>

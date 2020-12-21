@@ -27,10 +27,10 @@ export default () => {
         }
     }, [1]);
     return (
-        <Tooltip aria-label="back top" hasArrow={true} label="返回顶部" placement="right">
+        <Tooltip aria-label="back top" hasArrow={true} label="Tooltip" placement="right">
             <Box
                 display={['none', 'block']}
-                aria-label="返回顶部"
+                aria-label="Tooltip"
                 bg="theme.backTop.bg"
                 color="theme.primaryText"
                 className={css`

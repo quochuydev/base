@@ -36,7 +36,7 @@ export default () => {
         const { id } = router.query;
         Object.assign(data, { reply: id });
         axios.post('/admin/reply-comment/', data).then(() => {
-            message.success('提交成功');
+            message.success('publish');
             Router.push('/admin/content/comments');
         });
     };
@@ -60,7 +60,7 @@ export default () => {
                     <Form.Item labelCol={{ span: 3 }} wrapperCol={{ span: 10 }} label="article：">
                         <span className="ant-form-text">{comment.article && comment.article.title}</span>
                     </Form.Item>
-                    <Form.Item labelCol={{ span: 3 }} wrapperCol={{ span: 10 }} label="内容：">
+                    <Form.Item labelCol={{ span: 3 }} wrapperCol={{ span: 10 }} label="content">
                         <span
                             className="ant-form-text"
                             dangerouslySetInnerHTML={{ __html: marked(comment.content) }}
@@ -70,11 +70,11 @@ export default () => {
                         name="content"
                         labelCol={{ span: 3 }}
                         wrapperCol={{ span: 10 }}
-                        label="回复内容："
+                        label="content"
                         rules={[
                             {
                                 required: true,
-                                message: '回复内容不能为空！',
+                                message: 'required',
                                 min: 1,
                             },
                         ]}

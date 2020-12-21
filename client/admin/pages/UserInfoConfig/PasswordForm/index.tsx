@@ -34,7 +34,7 @@ export default () => {
                 const password = data.password;
                 const str = encrypt(JSON.stringify({ password }));
                 resetPassword({ key: str }).then(() => {
-                    message.success('更改密码成功！');
+                    message.success('resetPassword');
                 });
             }}
         >

@@ -57,7 +57,7 @@ export default () => {
             clipboard: c,
         }));
         c.on('success', function () {
-            message.success('复制链接成功');
+            message.success('copyButton');
         });
         fetchData();
         return () => {
@@ -71,12 +71,7 @@ export default () => {
             <div className="main-content">
                 <div className="table-wrapper">
                     {(state.loading || state.medias.length <= 0) && (
-                        <Alert
-                            showIcon
-                            message="暂无数据..."
-                            description="该页面并没有数据，如果是网络问题，请重新刷新。"
-                            type="success"
-                        />
+                        <Alert showIcon message="Alert..." description="Alert" type="success" />
                     )}
                     <MediaListRow id="media-row">
                         {state.medias.map((item) => {
@@ -95,26 +90,26 @@ export default () => {
                                         <Button
                                             key="viewButton"
                                             size="small"
-                                            title="查看大图"
+                                            title="viewButton"
                                             href={appConfig.siteDomain + item.filePath + '/' + item.fileName}
                                             target="_blank"
                                             className="button button-view"
                                             icon={<EyeFilled />}
                                         >
-                                            大图
+                                            viewButton
                                         </Button>,
                                         <Button
                                             key="copyButton"
                                             type="primary"
                                             size="small"
-                                            title="复制"
+                                            title="copyButton"
                                             data-clipboard-text={
                                                 appConfig.siteDomain + item.filePath + '/' + item.fileName
                                             }
                                             className="button copyButton"
                                             icon={<CopyFilled />}
                                         >
-                                            复制
+                                            copyButton
                                         </Button>,
                                         <Popconfirm
                                             key="confirmButton"
@@ -145,7 +140,7 @@ export default () => {
                     </MediaListRow>
                     <Row justify="end" style={{ marginTop: '20px' }}>
                         <Pagination
-                            showTotal={(total) => ` ${total} 条数据`}
+                            showTotal={(total) => ` ${total} total`}
                             showSizeChanger={true}
                             defaultCurrent={state.pagination.current}
                             total={state.pagination.total}

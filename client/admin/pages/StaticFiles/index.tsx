@@ -185,7 +185,7 @@ export default () => {
             clipboard: c,
         }));
         c.on('success', function () {
-            message.success('复制链接成功');
+            message.success('btnCopy');
         });
         fetchData();
         return () => {
@@ -241,7 +241,7 @@ export default () => {
                         visible={state.delConfirmVisible}
                         onVisibleChange={() => {
                             if (state.selectedRowKeys.length <= 0) {
-                                message.info('请选择要DeleteFilled的文件');
+                                message.info('delConfirmVisible');
                                 return;
                             }
                             setState((data) => ({
@@ -259,7 +259,7 @@ export default () => {
                     </Popconfirm>
                 </PanelDiv>
                 <Modal
-                    title="上传文件"
+                    title="visible"
                     visible={state.visible}
                     onOk={() => handleOk()}
                     onCancel={() =>
