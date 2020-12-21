@@ -9,7 +9,7 @@ const comemnt = (props: { article: any; comments: any }) => {
     return (
         <Box>
             <Heading as="h3" size="lg" my={[4]} textAlign="center" color="theme.primaryText">
-                --发表--
+                --Heading--
             </Heading>
             <CommentForm url="/comments" articleId={article._id} />
             <Box mt={4}>

@@ -117,7 +117,7 @@ export const AppFooter = () => {
                     <UiLink href="https://nestjs.com" isExternal={true}>
                         <LibLogo src={require('@blog/client/assets/svgs/logo-nestjs.svg')} />
                     </UiLink>
-                    <UiLink href="https://react.docschina.org" isExternal={true}>
+                    <UiLink href="#" isExternal={true}>
                         <LibLogo src={require('@blog/client/assets/svgs/logo-react.svg')} />
                     </UiLink>
                     <UiLink href="https://nodejs.org/en" isExternal={true}>

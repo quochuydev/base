@@ -79,7 +79,7 @@ const Item: SFC<{ item: any }> = (props: any) => {
                     wordBreak="break-all"
                     whiteSpace="normal"
                 >
-                    <span className="cat">发布于 {parseTime(item.createdAt)}</span>
+                    <span className="cat">createdAt {parseTime(item.createdAt)}</span>
                     <Text as="em" ml={1} mr={1}>
                         ·
                     </Text>
@@ -87,7 +87,7 @@ const Item: SFC<{ item: any }> = (props: any) => {
                     <Text as="em" ml={1} mr={1}>
                         ·
                     </Text>
-                    <a>阅读：{item.viewsCount}</a>
+                    <a>viewsCount: {item.viewsCount}</a>
                     <Text as="em" ml={1} mr={1}>
                         ·
                     </Text>
@@ -129,7 +129,7 @@ const Item: SFC<{ item: any }> = (props: any) => {
                         }}
                     ></LazyLoad>
                 </ThumbWrap>
-                <div title={item.title + ' 访问趋势'}>
+                <div title={item.title + ' title'}>
                     <Trend data={[1, 1, ...item.dayReadings.map((tmp: any) => tmp.count), 1, 1]} />
                 </div>
             </Flex>

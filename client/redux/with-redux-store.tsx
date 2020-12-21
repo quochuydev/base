@@ -6,10 +6,6 @@ import { setError, setConfig } from '@blog/client/redux/reducers/app';
 const isServer = typeof window === 'undefined';
 const __NEXT_REDUX_STORE__ = '__NEXT_REDUX_STORE__';
 
-/**
- * 拦截 axios 响应，添加错误处理
- * @param reduxStore redux store
- */
 const initAxios = (reduxStore) => {
     axios.interceptors.response.use(
         function (response) {

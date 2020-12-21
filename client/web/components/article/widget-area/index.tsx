@@ -106,7 +106,7 @@ export default (props: { recentArticles: ItemProps[] }) => {
         >
             <Box as="section">
                 <Heading as="h3" fontSize="1.2rem" pt={2} pb={2} color="theme.primaryText">
-                    最近文章
+                    Heading
                 </Heading>
                 <Box>
                     {arr.map((item) => {

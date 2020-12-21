@@ -39,7 +39,7 @@ const replyFn = (item: any) => {
                         setShowContent(!showContent);
                     }}
                 >
-                    {showContent ? '折叠' : '展开'}
+                    {showContent ? 'yes' : 'no'}
                 </Box>
             </Flex>
             <Collapse mt={4} isOpen={showContent}>

@@ -85,7 +85,6 @@ export default (props: UserReposProps) => {
     }
     return (
         <>
-            {/* <Text mb={3}>Github开源项目</Text> */}
             <Flex flexWrap="wrap" justifyContent="space-between">
                 {arr.map((item: UserRepoItem) => (
                     <PinnedListItem item={item} key={item.name}></PinnedListItem>

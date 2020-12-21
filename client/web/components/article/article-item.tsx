@@ -39,7 +39,7 @@ export default (props: Props) => {
             >
                 <BreadcrumbItem>
                     <Link href="/">
-                        <BreadcrumbLink color="theme.secondaryText">首页</BreadcrumbLink>
+                        <BreadcrumbLink color="theme.secondaryText">BreadcrumbLink</BreadcrumbLink>
                     </Link>
                 </BreadcrumbItem>
                 <BreadcrumbItem>
@@ -119,7 +119,7 @@ export default (props: Props) => {
             <Flex mb="1.8em" justifyContent="space-between" fontSize={rem(14)} color="theme.article.primaryText">
                 {article.prev && (
                     <Text isTruncated={true} width="45%" mr={5}>
-                        <Text as="strong">上一篇：</Text>
+                        <Text as="strong">article.prev:</Text>
                         <Link href={`/blog/articles/${article.prev._id}`} passHref={true}>
                             <UiLink>{article.prev.title}</UiLink>
                         </Link>
@@ -127,7 +127,7 @@ export default (props: Props) => {
                 )}
                 {article.next && (
                     <Text isTruncated={true} width="45%">
-                        <Text as="strong">下一篇：</Text>
+                        <Text as="strong">article.next:</Text>
                         <Link href={`/blog/articles/${article.next._id}`} passHref={true}>
                             <UiLink>{article.next.title}</UiLink>
                         </Link>

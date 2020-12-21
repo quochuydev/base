@@ -1,6 +1,5 @@
 import crypto from 'crypto-js';
 
-//加密方法
 export const encrypt = (str) => {
     const md5 = crypto.MD5(str);
     const s = md5.toString(crypto.enc.Hex);

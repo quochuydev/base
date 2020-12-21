@@ -1,6 +1,3 @@
-/*
- * 亮主题
- */
 import theme from '../default';
 import colors from './colors';
 

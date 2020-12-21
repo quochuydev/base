@@ -220,7 +220,7 @@ export const CommentForm = (props: Props) => {
                         alignItems="center"
                     >
                         <Text as="span" mb={['10px', '0']}>
-                            🚀 支持markdown语法
+                            markdown
                         </Text>
                         <ButtonGroup spacing={4} color="theme.primaryText">
                             <Button
@@ -230,7 +230,7 @@ export const CommentForm = (props: Props) => {
                                 fontWeight="normal"
                                 onClick={() => setIsShowEmotion(!isShowEmotion)}
                             >
-                                {isShowEmotion ? '关闭表情' : '打开表情'}
+                                {isShowEmotion ? 'yes' : 'no'}
                             </Button>
                             <Button
                                 fontWeight="normal"
@@ -239,7 +239,7 @@ export const CommentForm = (props: Props) => {
                                 size="sm"
                                 onClick={() => showPreview()}
                             >
-                                {isShowPreview ? '关闭预览' : '预览'}
+                                {isShowPreview ? 'yes' : 'no'}
                             </Button>
                             <Button
                                 fontWeight="normal"
@@ -250,7 +250,7 @@ export const CommentForm = (props: Props) => {
                                 size="sm"
                                 onClick={() => submit()}
                             >
-                                提 交
+                                buttonLoading
                             </Button>
                         </ButtonGroup>
                     </Flex>

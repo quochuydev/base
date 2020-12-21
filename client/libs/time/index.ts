@@ -1,7 +1,7 @@
 import dayjs from 'dayjs';
 import 'dayjs/locale/zh-cn';
 import relativeTime from 'dayjs/plugin/relativeTime';
-dayjs.locale('zh-cn');
+dayjs.locale('vn');
 dayjs.extend(relativeTime);
 
 export const timeAgo = (timestamp: string) => {
