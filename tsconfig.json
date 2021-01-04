@@ -1,0 +1,51 @@
+{
+  "compilerOptions": {
+    "moduleResolution": "node",
+    "noImplicitAny": false,
+    "removeComments": false,
+    "allowSyntheticDefaultImports": true,
+    "emitDecoratorMetadata": true,
+    "experimentalDecorators": true,
+    "downlevelIteration": true,
+    "strictNullChecks": false,
+    "target": "esnext",
+    "sourceMap": true,
+    "baseUrl": "./",
+    "paths": {
+      "@blog/*": [
+        "./*"
+      ]
+    },
+    "allowJs": true,
+    "skipLibCheck": true,
+    "strict": false,
+    "forceConsistentCasingInFileNames": false,
+    "esModuleInterop": true,
+    "module": "esnext",
+    "resolveJsonModule": true,
+    "jsx": "preserve",
+    "isolatedModules": true,
+    "lib": [
+      "dom",
+      "dom.iterable",
+      "esnext"
+    ],
+    "noEmit": true
+  },
+  "types": [
+    "typePatches",
+    "node"
+  ],
+  "include": [
+    "next-env.d.ts",
+    "server/**/*.ts",
+    "client/**/*.ts",
+    "client/**/*.tsx",
+    "pages/**/*.tsx",
+    "test/**/*.ts",
+    "typings/**/*.d.ts"
+  ],
+  "exclude": [
+    "node_modules"
+  ]
+}

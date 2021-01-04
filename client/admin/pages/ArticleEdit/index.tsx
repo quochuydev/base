@@ -1,0 +1,159 @@
+import React, { useState, useEffect, useCallback } from 'react';
+import Router, { useRouter } from 'next/router';
+import { Form, Input, Button, message } from 'antd';
+import axios from '@blog/client/admin/axios';
+import { ArrowLeftOutlined, SettingOutlined } from '@ant-design/icons';
+import { Header, EditorWrap } from './style';
+import Drawer from './Drawer';
+import Link from 'next/link';
+import { isLogin } from '@blog/client/admin/api/is.login.api';
+import { debounce } from 'lodash';
+import isLength from 'validator/lib/isLength';
+import dynamic from 'next/dynamic';
+const ToastuiEditor = dynamic(() => import('@blog/client/admin/components/ToastuiEditor'), { ssr: false });
+
+const { TextArea } = Input;
+
+export default () => {
+    const [editor, setEditor] = useState<any>(null);
+    const [data, setData] = useState<any>({
+        content: '',
+    });
+    const router = useRouter();
+    const [form] = Form.useForm();
+    const [showDrawer, setShowDrawer] = useState(false);
+
+    useEffect(() => {
+        isLogin();
+    });
+
+    useEffect(() => {
+        const { id } = router.query;
+        if (id) {
+            axios.get('/articles/' + id).then((res) => {
+                const article = res.data;
+                const category = article.category || {};
+                setData({
+                    title: article.title,
+                    content: article.content || '',
+                    category: category._id,
+                    screenshot: [
+                        {
+                            uid: -1,
+                            status: 'done',
+                            url: article.screenshot,
+                        },
+                    ],
+                    tags: article.tags,
+                    summary: article.summary,
+                    imgUrl: article.screenshot,
+                });
+                form.setFieldsValue({
+                    title: article.title,
+                    content: article.content || '',
+                });
+            });
+        }
+    }, [1]);
+
+    const createArticle = (data) => {
+        return axios.post('/articles', data);
+    };
+
+    const updateArticle = (id, data) => {
+        return axios.put('/articles/' + id, data);
+    };
+
+    const publish = (data) => {
+        const { id } = router.query;
+        const content = editor.getMarkdown();
+        if (!isLength(content, { min: 1, max: 15000 })) {
+            return message.error('publish!');
+        }
+        Object.assign(data, {
+            content,
+            screenshot: data.screenshot[0].url,
+        });
+        const p = id ? updateArticle(id, data) : createArticle(data);
+        p.then(() => {
+            message.success('publish ！');
+            Router.push('/admin/content/articles');
+        });
+    };
+
+    const { id } = router.query;
+    const debounceSetData = useCallback(
+        debounce((values: {}) => {
+            setData((data) => ({
+                ...data,
+                ...values,
+            }));
+        }),
+        [1]
+    );
+
+    return (
+        <Form.Provider
+            onFormChange={(name, { forms }) => {
+                if (name === 'articleConfigForm') {
+                    const { articleConfigForm } = forms;
+                    const values = articleConfigForm.getFieldsValue();
+                    debounceSetData(values);
+                }
+            }}
+            onFormFinish={(name, { values, forms }) => {
+                if (name === 'contentForm') {
+                    setShowDrawer(true);
+                } else {
+                    const { contentForm } = forms;
+                    const data = contentForm.getFieldsValue();
+                    publish({ ...values, ...data });
+                }
+            }}
+        >
+            <Header>
+                <div className="left-item">
+                    <div className="name">
+                        <Link href="/admin/content/articles" passHref={true}>
+                            <a>
+                                <ArrowLeftOutlined></ArrowLeftOutlined>
+                                ArrowLeftOutlined
+                            </a>
+                        </Link>
+                    </div>
+                    <div className="type">{id ? 'type1' : 'type2'}</div>
+                </div>
+                <EditorWrap>
+                    <Form form={form} initialValues={{ content: '' }} name="contentForm">
+                        <Form.Item
+                            name="c"
+                            style={{ maxWidth: '700px', width: '100%', margin: '0 auto' }}
+                            rules={[{ required: true, message: 'type1!', max: 80 }]}
+                        >
+                            <TextArea placeholder="type1" rows={1} style={{ textAlign: 'center' }} />
+                        </Form.Item>
+                    </Form>
+                </EditorWrap>
+                <section className="view-actions">
+                    <Button
+                        type="link"
+                        onClick={() => {
+                            form.submit();
+                        }}
+                    >
+                        <SettingOutlined></SettingOutlined>
+                        SettingOutlined
+                    </Button>
+                    <Drawer
+                        formData={data}
+                        visible={showDrawer}
+                        onCancel={() => {
+                            setShowDrawer(false);
+                        }}
+                    ></Drawer>
+                </section>
+            </Header>
+            <ToastuiEditor initialValue={data.content} getEditor={(e) => setEditor(e)}></ToastuiEditor>
+        </Form.Provider>
+    );
+};
